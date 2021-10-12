@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_071401) do
+ActiveRecord::Schema.define(version: 2021_10_12_071755) do
 
   create_table "airlines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,4 +20,15 @@ ActiveRecord::Schema.define(version: 2021_10_12_071401) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "score"
+    t.bigint "airline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airline_id"], name: "index_reviews_on_airline_id"
+  end
+
+  add_foreign_key "reviews", "airlines"
 end
